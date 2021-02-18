@@ -52,7 +52,7 @@ public class AdminUI{
 		});
 		
 		btnNewButton_1.setBackground(new Color(211, 211, 211));
-		btnNewButton_1.setForeground(Color.WHITE);
+		btnNewButton_1.setForeground(Color.BLACK);
 		btnNewButton_1.setBounds(742, 0, 165, 48);
 		frame.getContentPane().add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {

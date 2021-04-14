@@ -48,9 +48,9 @@ public class MitarbeiterUI{
 		frame.getContentPane().add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			frame.setVisible(false);
 				MainUI MuI = new MainUI();
 				MuI.login();
+				frame.dispose();
 			}
 		});
 		//lblNewLabel.setBounds(xaxepos, yaxepos, xgröße, ygröße);//

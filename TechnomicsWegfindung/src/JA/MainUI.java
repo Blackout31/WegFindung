@@ -52,6 +52,7 @@ public class MainUI {
 			public void actionPerformed(ActionEvent e) {
 			AnmeldenUI AUI=new AnmeldenUI();
 			AUI.initialize();
+			frame.dispose();
 			}
 		});
 		
@@ -73,6 +74,7 @@ public class MainUI {
 		public void actionPerformed(ActionEvent e) {
 		BesucherUI BUI=new BesucherUI();
 		BUI.initialize();
+		frame.dispose();
 		}
 	});
 

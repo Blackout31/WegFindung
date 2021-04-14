@@ -1,4 +1,4 @@
-package JA;
+package JA.Nein;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

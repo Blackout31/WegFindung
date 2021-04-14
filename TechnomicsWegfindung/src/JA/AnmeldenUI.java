@@ -23,7 +23,10 @@ public class AnmeldenUI{
 	public static void main(String[] args) {
 			initialize();	
 		}
-	
+
+public static void Exit() {
+	System.exit(0);
+}
 	public static void initialize() {
 		JFrame frame = new JFrame("AnmeldenUI");
 		JButton btnLogin = new JButton("Anmelden");
@@ -39,21 +42,22 @@ public class AnmeldenUI{
 		JButton btnNewButton_5 = new JButton("9");
 		JButton btnNewButton_7 = new JButton("0");
 		JButton btnNewButton_6 = new JButton("New button");
+//		passwordField.setText("");
 				
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			String password = passwordField.getText();
-		if(password.equals("Admin")) {
+		if(password.equals("4646")) {
 			passwordField.setText("");
-			frame.setVisible(false);
 			AdminUI AUI= new AdminUI();
 			AUI.initialize();
+			frame.dispose();
 		
-		}else if(password.equals("Mitarbeiter")) {
+		}else if(password.equals("5858")) {
 			passwordField.setText("");
-			frame.setVisible(false);
 			MitarbeiterUI MUI= new MitarbeiterUI();
 			MUI.initialize();
+			frame.dispose();
 				
 			
 		}else {
@@ -80,7 +84,7 @@ public class AnmeldenUI{
 		lblNewLabel.setBounds(220, 165, 150, 44);
 		frame.getContentPane().add(lblNewLabel);
 		
-		btnNewButton.setBounds(157, 341, 41, 44);
+		btnNewButton.setBounds(157, 448, 50, 50);
 		frame.getContentPane().add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -89,7 +93,7 @@ public class AnmeldenUI{
 			}
 		});
 		
-		btnNewButton_1.setBounds(208, 341, 41, 44);
+		btnNewButton_1.setBounds(208, 448, 50, 50);
 		frame.getContentPane().add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -98,7 +102,7 @@ public class AnmeldenUI{
 			}
 		});
 		
-		btnNewButton_2.setBounds(259, 341, 41, 44);
+		btnNewButton_2.setBounds(259, 448, 50, 50);
 		frame.getContentPane().add(btnNewButton_2);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -107,7 +111,7 @@ public class AnmeldenUI{
 			}
 		});
 	
-		btnNewButton_3.setBounds(208, 391, 41, 42);
+		btnNewButton_3.setBounds(208, 395, 50, 50);
 		frame.getContentPane().add(btnNewButton_3);
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -116,7 +120,7 @@ public class AnmeldenUI{
 			}
 		});
 		
-		btnNewButton_4.setBounds(157, 390, 41, 44);
+		btnNewButton_4.setBounds(157, 395, 50, 50);
 		frame.getContentPane().add(btnNewButton_4);
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -126,7 +130,7 @@ public class AnmeldenUI{
 		});
 		
 		
-		btnNewButton_5.setBounds(259, 451, 41, 38);
+		btnNewButton_5.setBounds(259, 343, 50, 50);
 		frame.getContentPane().add(btnNewButton_5);
 		btnNewButton_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -135,7 +139,7 @@ public class AnmeldenUI{
 			}
 		});
 		
-		btnNewButton_7.setBounds(208, 499, 41, 46);
+		btnNewButton_7.setBounds(208, 499, 50, 50);
 		frame.getContentPane().add(btnNewButton_7);
 		btnNewButton_7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -144,7 +148,7 @@ public class AnmeldenUI{
 			}
 		});
 		
-		btnNewButton_8.setBounds(157, 451, 41, 38);
+		btnNewButton_8.setBounds(157, 343, 50, 50);
 		frame.getContentPane().add(btnNewButton_8);
 		btnNewButton_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -153,7 +157,7 @@ public class AnmeldenUI{
 			}
 		});
 		
-		btnNewButton_9.setBounds(259, 395, 41, 38);
+		btnNewButton_9.setBounds(259, 395, 50, 50);
 		frame.getContentPane().add(btnNewButton_9);
 		btnNewButton_9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -162,7 +166,7 @@ public class AnmeldenUI{
 			}
 		});
 		
-		btnNewButton_10.setBounds(208, 451, 41, 38);
+		btnNewButton_10.setBounds(208, 343, 50, 50);
 		frame.getContentPane().add(btnNewButton_10);
 		btnNewButton_10.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -171,7 +175,7 @@ public class AnmeldenUI{
 			}
 		});
 		
-		btnNewButton_6.setBounds(259, 504, 41, 44);
+		btnNewButton_6.setBounds(259, 499, 50, 50);
 		frame.getContentPane().add(btnNewButton_6);
 		btnNewButton_6.setIcon(new ImageIcon("file:///C:/Users/Sujan%20Sirimorhan/eclipse-workspace/TechnomicsWegfindung/src/JA/Unbenannt-6-69a068fa33888d06.jpg"));
 		btnNewButton_6.addActionListener(new ActionListener() {

@@ -1,4 +1,4 @@
-package JA;
+package JA.Nein;
 
 public class AStern {
   public static void main(String[] args) {

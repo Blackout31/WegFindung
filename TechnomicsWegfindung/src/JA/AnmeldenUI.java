@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 import java.awt.Insets;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 public class AnmeldenUI{
@@ -44,7 +45,8 @@ public static void Exit() {
 		JButton btn_8 = new JButton("8");
 		JButton btn_9 = new JButton("9");
 		JButton btn_0 = new JButton("0");
-		JButton btn_Loeschen = new JButton("Eingabe Löschen");
+		Icon icon = new ImageIcon("src/Backspace_Arrow.png");
+		JButton btn_Loeschen = new JButton(icon);
 		passwordField = new JPasswordField();
 		JPanel panel = new JPanel();
 		
@@ -217,6 +219,7 @@ public static void Exit() {
 		btn_Loeschen.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 		Passwordinput = Passwordinput = "";
+		passwordField.setText(Passwordinput);
 			}
 		});
 	}

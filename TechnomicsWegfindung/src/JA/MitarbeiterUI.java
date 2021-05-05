@@ -26,6 +26,7 @@ public class MitarbeiterUI{
 		JLabel lblNewLabel = new JLabel("New label");	
 		JButton btnNewButton = new JButton("Neue Route bestimmen");
 		JButton btnNewButton_1 = new JButton("Ausloggen");
+		JButton btnHilfe = new JButton("Hilfe");
 		
 		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
 		frame.setBounds(0, 0, 914, 733);
@@ -53,6 +54,21 @@ public class MitarbeiterUI{
 				frame.dispose();
 			}
 		});
+		
+		btnHilfe.setBackground(Color.WHITE);
+		btnHilfe.setBounds(200, 0, 100, 50);
+		btnHilfe.isBackgroundSet();
+		frame.getContentPane().add(btnHilfe);
+		btnHilfe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			 JOptionPane.showMessageDialog(null,
+					  "Auf das Display klicken um den Startpunkt auszuwählen "
+			 		+ "\nRaumnummer eingeben um das Ziel auszuwählen"
+			 		+ "\nWegberechnen anklicken um den Weg ausgegeben zu bekommen"
+			 		+ "\n"
+			 		+ "\nZurück zum Menü anklicken um in den Bildschrimschoner zugelangen");
+				}
+			});
 		//lblNewLabel.setBounds(xaxepos, yaxepos, xgröße, ygröße);//
 	}
 }

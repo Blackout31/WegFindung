@@ -4,6 +4,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -29,26 +32,33 @@ public static void Exit() {
 }
 	public static void initialize() {
 		JFrame frame = new JFrame("AnmeldenUI");
-		JButton btnLogin = new JButton("Anmelden");
-		JLabel lblNewLabel = new JLabel("Bitte Password eintragen");
-		JButton btnNewButton = new JButton("1");
-		JButton btnNewButton_1 = new JButton("2");
-		JButton btnNewButton_2 = new JButton("3");
-		JButton btnNewButton_4 = new JButton("4");
-		JButton btnNewButton_3 = new JButton("5");
-		JButton btnNewButton_9 = new JButton("6");
-		JButton btnNewButton_8 = new JButton("7");
-		JButton btnNewButton_10 = new JButton("8");
-		JButton btnNewButton_5 = new JButton("9");
-		JButton btnNewButton_7 = new JButton("0");
-		JButton btnNewButton_6 = new JButton("New button");
-//		passwordField.setText("");
+		JButton btn_Login = new JButton("Anmelden");
+		JLabel lbl_Pw = new JLabel("Bitte Password eintragen");
+		JButton btn_1 = new JButton("1");
+		JButton btn_2 = new JButton("2");
+		JButton btn_3 = new JButton("3");
+		JButton btn_4 = new JButton("4");
+		JButton btn_5 = new JButton("5");
+		JButton btn_6 = new JButton("6");
+		JButton btn_7 = new JButton("7");
+		JButton btn_8 = new JButton("8");
+		JButton btn_9 = new JButton("9");
+		JButton btn_0 = new JButton("0");
+		JButton btn_Loeschen = new JButton("Eingabe Löschen");
+		passwordField = new JPasswordField();
+		JPanel panel = new JPanel();
+		
+		GraphicsEnvironment graphics =
+		GraphicsEnvironment.getLocalGraphicsEnvironment();
+		GraphicsDevice device = graphics.getDefaultScreenDevice();
 				
-		btnLogin.addActionListener(new ActionListener() {
+		btn_Login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			String password = passwordField.getText();
-		if(password.equals("4646")) {
 			passwordField.setText("");
+			Passwordinput="";
+		if(password.equals("4646")) {
+			passwordField.setText("");	
 			AdminUI AUI= new AdminUI();
 			AUI.initialize();
 			frame.dispose();
@@ -67,121 +77,146 @@ public static void Exit() {
 
 		//lblNewLabel.setBounds(xaxepos, yaxepos, xgröße, ygröße);//
 });
-		frame.setBounds(0, 0, 690, 661);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		frame.setVisible(true);
-		
-		passwordField = new JPasswordField();
-		passwordField.setBounds(193, 219, 177, 44);
-		passwordField.isForegroundSet();
+	    frame.getContentPane().setLayout(null);
+	    
+	    frame.getContentPane().add(panel); 
+	    frame.getContentPane().add(btn_Loeschen);
+	    frame.getContentPane().add(btn_1);
+	    frame.getContentPane().add(btn_2);
+	    frame.getContentPane().add(btn_3);
+	    frame.getContentPane().add(btn_4);
+	    frame.getContentPane().add(btn_5);
+	    frame.getContentPane().add(btn_6);
+	    frame.getContentPane().add(btn_7);
+	    frame.getContentPane().add(btn_8);
+	    frame.getContentPane().add(btn_9);
+	    frame.getContentPane().add(btn_0);
+	    frame.getContentPane().add(btn_Login);
+	    frame.getContentPane().add(lbl_Pw);
+	
+		frame.setUndecorated(true);
+	    frame.setResizable(false);
+	    device.setFullScreenWindow(frame);
+	    
+
+		passwordField.setOpaque(true);
+		passwordField.setBounds(404, 64, 177, 44);
 		frame.getContentPane().add(passwordField);
 		
-		btnLogin.setBounds(220,273,125,44);
-		btnLogin.isForegroundSet();
-		frame.getContentPane().add(btnLogin);
+		btn_Login.setBounds(431,118,125,44);
+		btn_Login.setOpaque(true);
+		frame.getContentPane().add(btn_Login);
+
+		lbl_Pw.setBounds(431, 10, 150, 44);
+		lbl_Pw.setOpaque(true);
+		frame.getContentPane().add(lbl_Pw);
 		
-		lblNewLabel.setBounds(220, 165, 150, 44);
-		frame.getContentPane().add(lblNewLabel);
-		
-		btnNewButton.setBounds(157, 448, 50, 50);
-		frame.getContentPane().add(btnNewButton);
-		btnNewButton.addActionListener(new ActionListener() {
+		btn_1.setBounds(411, 306, 50, 50);
+		btn_1.setOpaque(true);
+		frame.getContentPane().add(btn_1);
+		btn_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Passwordinput = Passwordinput + "1";
 				passwordField.setText(Passwordinput);
 			}
 		});
 		
-		btnNewButton_1.setBounds(208, 448, 50, 50);
-		frame.getContentPane().add(btnNewButton_1);
-		btnNewButton_1.addActionListener(new ActionListener() {
+		btn_2.setBounds(471, 306, 50, 50);
+		btn_2.setOpaque(true);
+		frame.getContentPane().add(btn_2);
+		btn_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Passwordinput = Passwordinput + "2";
 				passwordField.setText(Passwordinput);
 			}
 		});
 		
-		btnNewButton_2.setBounds(259, 448, 50, 50);
-		frame.getContentPane().add(btnNewButton_2);
-		btnNewButton_2.addActionListener(new ActionListener() {
+		btn_3.setBounds(531, 306, 50, 50);
+		btn_3.setOpaque(true);
+		frame.getContentPane().add(btn_3);
+		btn_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Passwordinput = Passwordinput + "3";
 				passwordField.setText(Passwordinput);
 			}
 		});
+		
+		btn_4.setBounds(411, 246, 50, 50);
+		btn_4.setOpaque(true);
+		frame.getContentPane().add(btn_4);
+		btn_4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Passwordinput = Passwordinput + "4";
+				passwordField.setText(Passwordinput);
+			}
+		});
 	
-		btnNewButton_3.setBounds(208, 395, 50, 50);
-		frame.getContentPane().add(btnNewButton_3);
-		btnNewButton_3.addActionListener(new ActionListener() {
+		btn_5.setBounds(471, 246, 50, 50);
+		btn_5.setOpaque(true);
+		frame.getContentPane().add(btn_5);
+		btn_5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Passwordinput = Passwordinput + "5";
 				passwordField.setText(Passwordinput);
 			}
 		});
 		
-		btnNewButton_4.setBounds(157, 395, 50, 50);
-		frame.getContentPane().add(btnNewButton_4);
-		btnNewButton_4.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Passwordinput = Passwordinput + "4";
-				passwordField.setText(Passwordinput);
-			}
-		});
-		
-		
-		btnNewButton_5.setBounds(259, 343, 50, 50);
-		frame.getContentPane().add(btnNewButton_5);
-		btnNewButton_5.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Passwordinput = Passwordinput + "9";
-				passwordField.setText(Passwordinput);
-			}
-		});
-		
-		btnNewButton_7.setBounds(208, 499, 50, 50);
-		frame.getContentPane().add(btnNewButton_7);
-		btnNewButton_7.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Passwordinput = Passwordinput + "0";
-				passwordField.setText(Passwordinput);
-			}
-		});
-		
-		btnNewButton_8.setBounds(157, 343, 50, 50);
-		frame.getContentPane().add(btnNewButton_8);
-		btnNewButton_8.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Passwordinput = Passwordinput + "7";
-				passwordField.setText(Passwordinput);
-			}
-		});
-		
-		btnNewButton_9.setBounds(259, 395, 50, 50);
-		frame.getContentPane().add(btnNewButton_9);
-		btnNewButton_9.addActionListener(new ActionListener() {
+		btn_6.setBounds(531, 246, 50, 50);
+		btn_6.setOpaque(true);
+		frame.getContentPane().add(btn_6);
+		btn_6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Passwordinput = Passwordinput + "6";
 				passwordField.setText(Passwordinput);
 			}
 		});
 		
-		btnNewButton_10.setBounds(208, 343, 50, 50);
-		frame.getContentPane().add(btnNewButton_10);
-		btnNewButton_10.addActionListener(new ActionListener() {
+		btn_7.setBounds(411, 186, 50, 50);
+		btn_7.setOpaque(true);
+		frame.getContentPane().add(btn_7);
+		btn_7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Passwordinput = Passwordinput + "7";
+				passwordField.setText(Passwordinput);
+			}
+		});
+		
+		btn_8.setBounds(471, 186, 50, 50);
+		btn_8.setOpaque(true);
+		frame.getContentPane().add(btn_8);
+		btn_8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Passwordinput = Passwordinput + "8";
 				passwordField.setText(Passwordinput);
 			}
 		});
 		
-		btnNewButton_6.setBounds(259, 499, 50, 50);
-		frame.getContentPane().add(btnNewButton_6);
-		btnNewButton_6.setIcon(new ImageIcon("file:///C:/Users/Sujan%20Sirimorhan/eclipse-workspace/TechnomicsWegfindung/src/JA/Unbenannt-6-69a068fa33888d06.jpg"));
-		btnNewButton_6.addActionListener(new ActionListener() {
+		btn_9.setBounds(531, 186, 50, 50);
+		btn_9.setOpaque(true);
+		frame.getContentPane().add(btn_9);
+		btn_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Passwordinput = Passwordinput + "9";
+				passwordField.setText(Passwordinput);
+			}
+		});
+		
+		btn_0.setBounds(471, 366, 50, 50);
+		btn_0.setOpaque(true);
+		frame.getContentPane().add(btn_0);
+		btn_0.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Passwordinput = Passwordinput + "0";
+				passwordField.setText(Passwordinput);
+			}
+		});
+		
+		btn_Loeschen.setBounds(531, 366, 50, 50);
+		btn_Loeschen.setOpaque(true);
+		frame.getContentPane().add(btn_Loeschen);
+		btn_Loeschen.addActionListener(new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 		Passwordinput = Passwordinput = "";
-		passwordField.setText(Passwordinput);
 			}
 		});
 	}

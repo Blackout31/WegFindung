@@ -99,7 +99,7 @@ public class AdminUI{
 		btnEnde.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			 JOptionPane.showConfirmDialog(null,"Sind Sie Sicher?","Programm beenden?", JOptionPane.OK_CANCEL_OPTION);
-			 System.exit(0);
+			 			 System.exit(0);
 				}
 		});
 		

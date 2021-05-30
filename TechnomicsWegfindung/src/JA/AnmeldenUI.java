@@ -8,6 +8,9 @@ import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 
 import javax.swing.border.LineBorder;
+
+import org.json.simple.JSONObject;
+
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -49,7 +52,7 @@ public static void Exit() {
 		JButton btn_Loeschen = new JButton(icon);
 		passwordField = new JPasswordField();
 		JPanel panel = new JPanel();
-		
+
 		GraphicsEnvironment graphics =
 		GraphicsEnvironment.getLocalGraphicsEnvironment();
 		GraphicsDevice device = graphics.getDefaultScreenDevice();

@@ -59,7 +59,7 @@ public class Wand extends JComponent {
 	    getClass();
 	    this.ratio = this.WIDTH / 30;
 	    try {
-	      this.boden = ImageIO.read(new File("boden.png"));
+	      //this.boden = ImageIO.read(new File("boden.png"));
 	      this.stein = ImageIO.read(new File("stein.png"));
 	      this.player = ImageIO.read(new File("player.png"));
 	      this.ziel = ImageIO.read(new File("ziel.png"));

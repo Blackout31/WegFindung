@@ -23,6 +23,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
 import javax.swing.SwingUtilities;
@@ -53,13 +54,13 @@ public class Frame extends JPanel
 	Node startNode, endNode;
 	String mode;
 	
-	Timer timer = new Timer(100, this);
-	int r = randomWithRange(0, 255);
-	int G = randomWithRange(0, 255);
-	int b = randomWithRange(0, 255);
+//	Timer timer = new Timer(100, this);
+//	int r = randomWithRange(0, 255);
+//	int G = randomWithRange(0, 255);
+//	int b = randomWithRange(0, 255);
 
 	public static void main(String[] args) {
-		new Frame();
+//		new Frame();
 		
 		JSONParser jsonParser = new JSONParser();
   
@@ -86,12 +87,11 @@ public class Frame extends JPanel
 	        
 	        pathfinding.speicherWand();
 	    }
-	
-	
+
 	public Frame() {
 		ch = new ControlHandler(this);
 		size = 25;
-		mode = "Map Creation";
+//		mode = "Map Creation";
 //		showSteps = true;
 		btnHover = false;
 		setLayout(null);
@@ -107,11 +107,11 @@ public class Frame extends JPanel
 		pathfinding.setDiagonal(false);
 		
 		// Calculating value of a in speed function 1
-		a1 = (5000.0000 / (Math.pow(25.0000/5000, 1/49)));
-		a2 = 625.0000;
+//		a1 = (5000.0000 / (Math.pow(25.0000/5000, 1/49)));
+//		a2 = 625.0000;
 		
 		// Set up window
-		window = new JFrame();
+/*		window = new JFrame();
 		window.setContentPane(this);
 		window.setTitle("A* Pathfinding Visualization");
 		window.getContentPane().setPreferredSize(new Dimension(700, 600));
@@ -119,7 +119,7 @@ public class Frame extends JPanel
 		window.pack();
 		window.setLocationRelativeTo(null);
 		window.setVisible(true);
-		
+*/		
 		// Add all controls
 		ch.addAll();
 		
@@ -137,8 +137,8 @@ public class Frame extends JPanel
 		// If no path is found
 		if (pathfinding.isNoPath()) {
 			// Set timer for animation
-			timer.setDelay(50);
-			timer.start();
+//			timer.setDelay(50);
+//			timer.start();
 
 			// Set text of "run" button to "clear"
 			ch.getB("run").setText("clear");
@@ -160,8 +160,8 @@ public class Frame extends JPanel
 			ch.getB("run").setText("clear");
 			
 			// Set timer delay, start for background animation
-			timer.setDelay(50);
-			timer.start();
+//			timer.setDelay(50);
+//			timer.start();
 
 			// // Make the background flicker
 			// Color flicker = new Color(r, G, b);
@@ -233,42 +233,42 @@ public class Frame extends JPanel
 		}
 		
 		// If control panel is being hovered, change colours
-		if(btnHover) {
-			g.setColor(style.darkText);
-			ch.hoverColour();
-		}
-		else {
-			g.setColor(style.btnPanel);
-			ch.nonHoverColour();
-		}
+//		if(btnHover) {
+//			g.setColor(style.darkText);
+//			ch.hoverColour();
+//		}
+//		else {
+//			g.setColor(style.btnPanel);
+//			ch.nonHoverColour();
+//		}
 		// Drawing control panel rectangle
-		g.fillRect(10, height-96, 322, 90);
+//		g.fillRect(10, height-96, 322, 90);
 
 		// Setting mode text
-		ch.getL("modeText").setText("Mode: " + mode);
+//		ch.getL("modeText").setText("Mode: " + mode);
 		
 		// Position all controls
 		ch.position();
 		
 		// Setting numbers in pathfinding lists
-		ch.getL("openC").setText(Integer.toString(pathfinding.getOpenList().size()));
-		ch.getL("closedC").setText(Integer.toString(pathfinding.getClosedList().size()));
-		ch.getL("pathC").setText(Integer.toString(pathfinding.getPathList().size()));
+//		ch.getL("openC").setText(Integer.toString(pathfinding.getOpenList().size()));
+//		ch.getL("closedC").setText(Integer.toString(pathfinding.getClosedList().size()));
+//		ch.getL("pathC").setText(Integer.toString(pathfinding.getPathList().size()));
 				
 		// Setting speed number text in showSteps or !showSteps mode
-		if(showSteps) {
-			ch.getL("speedC").setText(Integer.toString(ch.getS("speed").getValue()));
-		}
-		else {
+//		if(showSteps) {
+//			ch.getL("speedC").setText(Integer.toString(ch.getS("speed").getValue()));
+//		}
+//		else {
 			ch.getL("speedC").setText("N/A");
-		}
+//		}
 					
 		// Getting values from checkboxes
 //		showSteps = ch.getC("showStepsCheck").isSelected();
 //		pathfinding.setDiagonal(ch.getC("diagonalCheck").isSelected());
-		pathfinding.setDiagonal(false);
-		showSteps = false;
-		pathfinding.setTrig(ch.getC("trigCheck").isSelected());
+//		pathfinding.setDiagonal(false);
+//		showSteps = false;
+//		pathfinding.setTrig(ch.getC("trigCheck").isSelected());
 	}
 	
 	// Draws info (f, g, h) on current node
@@ -471,13 +471,13 @@ public class Frame extends JPanel
 		int height = this.getHeight();
 		
 		// Detects if mouse is within button panel
-		if(x >= 10 && x <= 332 && y >= (height-96) && y <= (height-6)) {
-			btnHover = true;
-		}
-		else {
-			btnHover = false;
-		}
-		repaint();
+//		if(x >= 10 && x <= 332 && y >= (height-96) && y <= (height-6)) {
+//			btnHover = true;
+//		}
+//		else {
+//			btnHover = false;
+//		}
+//		repaint();
 	}
 
 	@Override
@@ -489,10 +489,10 @@ public class Frame extends JPanel
 		currentKey = key;
 
 		// Start if space is pressed
-		if (currentKey == KeyEvent.VK_SPACE) {
-			ch.getB("run").setText("stop");
-			start();
-		}
+//		if (currentKey == KeyEvent.VK_SPACE) {
+//			ch.getB("run").setText("stop");
+//			start();
+//		}
 	}
 	
 	@Override
@@ -503,15 +503,17 @@ public class Frame extends JPanel
 	// Starts path finding
 	void start() {
 		if(startNode != null && endNode != null) {
-			if (!showSteps) {
+//			if (!showSteps) {
 				pathfinding.start(startNode, endNode);
-			} else {
-				pathfinding.setup(startNode, endNode);
-				setSpeed();
-				timer.start();
-			}
+//			} else {
+//				pathfinding.setup(startNode, endNode);
+//				setSpeed();
+//				timer.start();
+//			}
 		}
 		else {
+			JOptionPane.showMessageDialog(null,"Es muss ein Startpunkt, sowie ein Endpunkt definiert werden");
+//			reset()
 			System.out.println("ERROR: Needs start and end points to run.");
 		}
 	}
@@ -609,11 +611,11 @@ public class Frame extends JPanel
 			}
 			else if(e.getActionCommand().equals("stop")) {
 				ch.getB("run").setText("start");
-				timer.stop();
+//				timer.stop();
 			}
 			else if(e.getActionCommand().equals("start")) {
 				ch.getB("run").setText("stop");
-				timer.start();
+//				timer.start();
 			}
 		}
 		repaint();
@@ -628,7 +630,7 @@ public class Frame extends JPanel
 	
 	// Calculates delay with two exponential functions
 	void setSpeed() {
-		timer.setDelay(0);
+//		timer.setDelay(0);
 	}
 	
 	boolean showSteps() {

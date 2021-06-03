@@ -1,5 +1,6 @@
 package Code;
 
+//Importliste
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
@@ -24,16 +25,16 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
 public class AnmeldenUI{
+	
+	//Passwortfeld
 	public static String Passwordinput = "";
-			
 	private static JPasswordField passwordField;
-	public static void main(String[] args) {
+	
+		public static void main(String[] args) {
 			initialize();	
 		}
 
-public static void Exit() {
-	System.exit(0);
-}
+	//Anmeldeoberfläche
 	public static void initialize() {
 		JFrame frame = new JFrame("AnmeldenUI");
 		JButton btn_Login = new JButton("Anmelden");
@@ -52,38 +53,50 @@ public static void Exit() {
 		JButton btn_Loeschen = new JButton(icon);
 		passwordField = new JPasswordField();
 		JPanel panel = new JPanel();
-
+	
+	//Vollbild
 		GraphicsEnvironment graphics =
 		GraphicsEnvironment.getLocalGraphicsEnvironment();
 		GraphicsDevice device = graphics.getDefaultScreenDevice();
-				
+	
+	//Anmelde Schaltfläche mit Passwordabfrage
 		btn_Login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			String password = passwordField.getText();
 			passwordField.setText("");
 			Passwordinput="";
+			
+	//Administrator Zugang		
 		if(password.equals("4646")) {
 			passwordField.setText("");	
 			AdminUI AUI= new AdminUI();
 			AUI.initialize();
 			frame.dispose();
-		
+	
+	//Mitarbeiter Zugang
 		}else if(password.equals("5858")) {
 			passwordField.setText("");
 			MitarbeiterUI MUI= new MitarbeiterUI();
 			MUI.initialize();
 			frame.dispose();
+	
+	//Zugang um Passwörter festzulegen oder zu bearbeiten
+		}else if(password.equals("6767")) {
+			passwordField.setText("");
+			MitarbeiterUI MUI= new MitarbeiterUI();
+			MUI.initialize();
+			frame.dispose();
 				
-			
+	//Falsches Passwort
 		}else {
 			JOptionPane.showMessageDialog(frame, "Ungültige Eingabe","Error", JOptionPane.ERROR_MESSAGE);
 		}
 	};
 
-		//lblNewLabel.setBounds(xaxepos, yaxepos, xgröße, ygröße);//
 });
+		
+	//Frame bestücken
 	    frame.getContentPane().setLayout(null);
-	    
 	    frame.getContentPane().add(panel); 
 	    frame.getContentPane().add(btn_Loeschen);
 	    frame.getContentPane().add(btn_1);
@@ -103,19 +116,22 @@ public static void Exit() {
 	    frame.setResizable(false);
 	    device.setFullScreenWindow(frame);
 	    
-
+	//Passwortfeldeigenschaften 
 		passwordField.setOpaque(true);
 		passwordField.setBounds(404, 64, 177, 44);
 		frame.getContentPane().add(passwordField);
-		
+	
+	//Abmelden: Schaltfälcheneigenschaften			
 		btn_Login.setBounds(431,118,125,44);
 		btn_Login.setOpaque(true);
 		frame.getContentPane().add(btn_Login);
 
+	//Beschriftung
 		lbl_Pw.setBounds(431, 10, 150, 44);
 		lbl_Pw.setOpaque(true);
 		frame.getContentPane().add(lbl_Pw);
-		
+	
+	//Schaltfläche 1
 		btn_1.setBounds(411, 306, 50, 50);
 		btn_1.setOpaque(true);
 		frame.getContentPane().add(btn_1);
@@ -126,6 +142,7 @@ public static void Exit() {
 			}
 		});
 		
+	//Schaltfläche 2
 		btn_2.setBounds(471, 306, 50, 50);
 		btn_2.setOpaque(true);
 		frame.getContentPane().add(btn_2);
@@ -136,6 +153,7 @@ public static void Exit() {
 			}
 		});
 		
+	//Schaltfläche 3
 		btn_3.setBounds(531, 306, 50, 50);
 		btn_3.setOpaque(true);
 		frame.getContentPane().add(btn_3);
@@ -146,6 +164,7 @@ public static void Exit() {
 			}
 		});
 		
+	//Schaltfläche 4
 		btn_4.setBounds(411, 246, 50, 50);
 		btn_4.setOpaque(true);
 		frame.getContentPane().add(btn_4);
@@ -156,6 +175,7 @@ public static void Exit() {
 			}
 		});
 	
+	//Schaltfläche 5
 		btn_5.setBounds(471, 246, 50, 50);
 		btn_5.setOpaque(true);
 		frame.getContentPane().add(btn_5);
@@ -166,6 +186,7 @@ public static void Exit() {
 			}
 		});
 		
+	//Schaltfläche 6
 		btn_6.setBounds(531, 246, 50, 50);
 		btn_6.setOpaque(true);
 		frame.getContentPane().add(btn_6);
@@ -176,6 +197,7 @@ public static void Exit() {
 			}
 		});
 		
+	//Schaltfläche 7
 		btn_7.setBounds(411, 186, 50, 50);
 		btn_7.setOpaque(true);
 		frame.getContentPane().add(btn_7);
@@ -186,6 +208,7 @@ public static void Exit() {
 			}
 		});
 		
+	//Schaltfläche 8
 		btn_8.setBounds(471, 186, 50, 50);
 		btn_8.setOpaque(true);
 		frame.getContentPane().add(btn_8);
@@ -196,6 +219,7 @@ public static void Exit() {
 			}
 		});
 		
+	//Schaltfläche 9
 		btn_9.setBounds(531, 186, 50, 50);
 		btn_9.setOpaque(true);
 		frame.getContentPane().add(btn_9);
@@ -206,6 +230,7 @@ public static void Exit() {
 			}
 		});
 		
+	//Schaltfläche 0
 		btn_0.setBounds(471, 366, 50, 50);
 		btn_0.setOpaque(true);
 		frame.getContentPane().add(btn_0);
@@ -216,6 +241,7 @@ public static void Exit() {
 			}
 		});
 		
+	//Schaltfläche Eingabe Löschen
 		btn_Loeschen.setBounds(531, 366, 50, 50);
 		btn_Loeschen.setOpaque(true);
 		frame.getContentPane().add(btn_Loeschen);

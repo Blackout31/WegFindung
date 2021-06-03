@@ -1,5 +1,6 @@
 package Code;
 
+//Importliste
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
@@ -17,65 +18,72 @@ import javax.swing.ImageIcon;
 
 public class MitarbeiterUI{
 
-		public static void main(String[] args) {
-			initialize();
-		}
+	public static void main(String[] args) {
+		initialize();
+	}
 	
+	//Mitarbeiteroberfälche
 	public static void initialize() {
 		JFrame frame = new JFrame("MitarbeiterUI");
-		JLabel lblNewLabel = new JLabel("New label");	
+		JLabel lblNewLabel = new JLabel("R2217");	
 		JButton btnNewButton = new JButton("Neue Route bestimmen");
 		JButton btnNewButton_1 = new JButton("Ausloggen");
 		JButton btnHilfe = new JButton("Hilfe");
-		
+	
+	//Frame Eigenschaften
 		frame.getContentPane().setBackground(Color.LIGHT_GRAY);
 		frame.setBounds(0, 0, 914, 733);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 	
+	//Kartenbild	
 		lblNewLabel.setIcon(new ImageIcon("file:///C:/Users/Sujan%20Sirimorhan/eclipse-workspace/TechnomicsWegfindung/src/JA/Unbenannt-6-69a068fa33888d06.jpg"));
-		lblNewLabel.setBounds(0, 41, 902, 665);
+		lblNewLabel.setBounds(25, 97, 84, 72);
 		frame.getContentPane().add(lblNewLabel);
 		frame.setVisible(true);
 		
+	//Wegfindung Starten: Schaltfälcheneigenschaften
 		btnNewButton.setBounds(0, 0, 147, 45);
 		frame.getContentPane().add(btnNewButton);
+
+	//Abmelden: Schaltfälcheneigenschaften	
+		btnNewButton_1.setBounds(772, 0, 130, 45);
+		frame.getContentPane().add(btnNewButton_1);
+		
+	//Hilfe: Schaltfälcheneigenschaften	
+		btnHilfe.setBackground(Color.WHITE);
+		btnHilfe.setBounds(200, 0, 100, 50);
+		btnHilfe.isBackgroundSet();
+		frame.getContentPane().add(btnHilfe);
+		
+//////////////////////////////////////////////////////////////////////////////////////////
+		
+	//Wegfindung: Schaltfächenfunktion
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
 		
-		btnNewButton_1.setBounds(772, 0, 130, 45);
-		frame.getContentPane().add(btnNewButton_1);
+	//Abmelden: Schaltfächenfunktion
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainUI MuI = new MainUI();
-				MuI.login();
-				frame.dispose();
+			MainUI MuI = new MainUI();
+			MuI.login();
+			frame.dispose();
 			}
 		});
 		
-		btnHilfe.setBackground(Color.WHITE);
-		btnHilfe.setBounds(200, 0, 100, 50);
-		btnHilfe.isBackgroundSet();
-		frame.getContentPane().add(btnHilfe);
+	//Hilfe: Schaltfächenfunktion
 		btnHilfe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			 JOptionPane.showMessageDialog(null,
-					  "Auf das Display klicken um den Startpunkt auszuwählen "
-			 		+ "\nRaumnummer eingeben um das Ziel auszuwählen"
-			 		+ "\nWegberechnen anklicken um den Weg ausgegeben zu bekommen"
-			 		+ "\n"
-			 		+ "\nZurück zum Menü anklicken um in den Bildschrimschoner zugelangen");
-				}
-			});
-		//lblNewLabel.setBounds(xaxepos, yaxepos, xgröße, ygröße);//
+			JOptionPane.showMessageDialog(null,
+			  "Auf das Display klicken um den Startpunkt auszuwählen "
+			 + "\nRaumnummer eingeben um das Ziel auszuwählen"
+			 + "\nWegberechnen anklicken um den Weg ausgegeben zu bekommen"
+			 + "\n"
+			 + "\nZurück zum Menü anklicken um in den Bildschrimschoner zugelangen");
+			}
+		});
+		
 	}
 }
-/*JButton btnLogin = new JButton("Anmelden");
-btnLogin.addActionListener(new ActionListener() {
-	public void actionPerformed(ActionEvent e) {
-	AnmeldenUI AUI=new AnmeldenUI();
-	AUI.initialize();
-	}
-});*/

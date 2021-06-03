@@ -606,7 +606,7 @@ public class APathfinding {
 	         
 		}
         //Schriebe in die JSON
-        try (FileWriter file = new FileWriter("employees2.json")) {
+        try (FileWriter file = new FileWriter("Wand.json")) {
 			//We can write any JSONArray or JSONObject instance to the file
             file.write(employeeList.toJSONString()); 
             file.flush();

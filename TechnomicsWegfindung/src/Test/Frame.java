@@ -65,7 +65,7 @@ public class Frame extends JPanel
   
 	        //JSON parser object to parse read file
 	         
-	        try (FileReader reader = new FileReader("employees2.json"))
+	        try (FileReader reader = new FileReader("Wand.json"))
 	        {
 	            //Read JSON file
 	            Object obj = jsonParser.parse(reader);

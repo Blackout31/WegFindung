@@ -4,6 +4,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -32,15 +35,23 @@ public class AdminUI{
 		JButton btnNewButton_4 = new JButton("R‰ume konfigurieren");
 		JButton btnHilfe = new JButton("Hilfe");
 		JButton btnEnde = new JButton("Schlieﬂen");
+		
+		//Vollbild
+		GraphicsEnvironment graphics =
+		GraphicsEnvironment.getLocalGraphicsEnvironment();
+		GraphicsDevice device = graphics.getDefaultScreenDevice();
 
 		frame.getContentPane().setBackground(new Color(211, 211, 211));
 		frame.setBounds(0, 0, 920, 785);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setUndecorated(true);
+	    frame.setResizable(false);
+	    device.setFullScreenWindow(frame);
 		
 		lblNewLabel.setIcon(new ImageIcon("file:///C:/Users/Sujan%20Sirimorhan/eclipse-workspace/TechnomicsWegfindung/src/img/Karte.png"));
 		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setBounds(0, 47, 907, 657);
+		lblNewLabel.setBounds(0, 45, 920, 685);
 		frame.getContentPane().add(lblNewLabel);
 		frame.setVisible(true);
 		
@@ -55,7 +66,7 @@ public class AdminUI{
 		
 		btnNewButton_1.setBackground(new Color(211, 211, 211));
 		btnNewButton_1.setForeground(Color.BLACK);
-		btnNewButton_1.setBounds(742, 0, 165, 48);
+		btnNewButton_1.setBounds(755, 0, 165, 48);
 		frame.getContentPane().add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -67,7 +78,7 @@ public class AdminUI{
 		
 		btnNewButton_2.setBackground(new Color(211, 211, 211));
 		btnNewButton_2.setForeground(Color.BLACK);
-		btnNewButton_2.setBounds(0, 703, 191, 48);
+		btnNewButton_2.setBounds(0, 727, 191, 48);
 		frame.getContentPane().add(btnNewButton_2);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	
@@ -76,7 +87,7 @@ public class AdminUI{
 		
 		btnNewButton_3.setBackground(new Color(211, 211, 211));
 		btnNewButton_3.setForeground(Color.BLACK);
-		btnNewButton_3.setBounds(357, 703, 191, 48);
+		btnNewButton_3.setBounds(355, 727, 191, 48);
 		frame.getContentPane().add(btnNewButton_3);
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -85,7 +96,7 @@ public class AdminUI{
 		
 		btnNewButton_4.setBackground(new Color(211, 211, 211));
 		btnNewButton_4.setForeground(Color.BLACK);
-		btnNewButton_4.setBounds(716, 703, 191, 48);
+		btnNewButton_4.setBounds(729, 727, 191, 48);
 		frame.getContentPane().add(btnNewButton_4);
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

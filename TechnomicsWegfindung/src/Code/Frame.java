@@ -42,7 +42,7 @@ import org.json.simple.parser.ParseException;
  * by Devon Crawford
  */
 public class Frame extends JPanel
-		implements ActionListener, MouseListener, MouseMotionListener, MouseWheelListener, KeyListener {
+		implements ActionListener, MouseListener, MouseMotionListener, KeyListener {
 
 	ControlHandler ch;
 	JFrame window;
@@ -53,51 +53,44 @@ public class Frame extends JPanel
 	char currentKey = (char) 0;
 	Node startNode, endNode;
 	String mode;
-	
-//	Timer timer = new Timer(100, this);
-//	int r = randomWithRange(0, 255);
-//	int G = randomWithRange(0, 255);
-//	int b = randomWithRange(0, 255);
 
 	public static void main(String[] args) {
 //		new Frame();
-		
+	}
+
+	public static void ini() {
 		JSONParser jsonParser = new JSONParser();
-  
-	        //JSON parser object to parse read file
-	         
-	        try (FileReader reader = new FileReader("Wand.json"))
-	        {
-	            //Read JSON file
-	            Object obj = jsonParser.parse(reader);
-	 
-	            JSONArray employeeList = (JSONArray) obj;
-//	            System.out.println(employeeList);
-	             
-	            //Iterate over employee array
-	            employeeList.forEach( emp -> parseEmployeeObject( (JSONObject) emp ) );
-	 
-	        } catch (FileNotFoundException e) {
-	            e.printStackTrace();
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        } catch (ParseException e) {
-	            e.printStackTrace();
-	        }
-	        
-	        pathfinding.speicherWand();
-	    }
+
+		// JSON parser object to parse read file
+
+		try (FileReader reader = new FileReader("Wand.json")) {
+			// Read JSON file
+			Object obj = jsonParser.parse(reader);
+
+			JSONArray employeeList = (JSONArray) obj;
+//            System.out.println(employeeList);
+
+			// Iterate over employee array
+			employeeList.forEach(emp -> parseEmployeeObject((JSONObject) emp));
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public Frame() {
 		ch = new ControlHandler(this);
-		size = 25;
+		size = 10;
 //		mode = "Map Creation";
 //		showSteps = true;
 		btnHover = false;
 		setLayout(null);
 		addMouseListener(this);
 		addMouseMotionListener(this);
-		addMouseWheelListener(this);
 		addKeyListener(this);
 		setFocusable(true);
 		setFocusTraversalKeysEnabled(false);
@@ -105,35 +98,33 @@ public class Frame extends JPanel
 		// Set up pathfinding
 		pathfinding = new APathfinding(this, size);
 		pathfinding.setDiagonal(false);
-		
+
 		// Calculating value of a in speed function 1
 //		a1 = (5000.0000 / (Math.pow(25.0000/5000, 1/49)));
 //		a2 = 625.0000;
-		
+
 		// Set up window
-/*		window = new JFrame();
-		window.setContentPane(this);
-		window.setTitle("A* Pathfinding Visualization");
-		window.getContentPane().setPreferredSize(new Dimension(700, 600));
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.pack();
-		window.setLocationRelativeTo(null);
-		window.setVisible(true);
-*/		
+		/*
+		 * window = new JFrame(); window.setContentPane(this);
+		 * window.setTitle("A* Pathfinding Visualization");
+		 * window.getContentPane().setPreferredSize(new Dimension(700, 600));
+		 * window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); window.pack();
+		 * window.setLocationRelativeTo(null); window.setVisible(true);
+		 */
 		// Add all controls
 		ch.addAll();
-		
+
 		this.revalidate();
 		this.repaint();
 	}
-	
+
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		
+
 		// Grab dimensions of panel
 		int height = getHeight();
 		int width = getWidth();
-		
+
 		// If no path is found
 		if (pathfinding.isNoPath()) {
 			// Set timer for animation
@@ -142,10 +133,9 @@ public class Frame extends JPanel
 
 			// Set text of "run" button to "clear"
 			ch.getB("run").setText("clear");
-			
+
 			// Set mode to "No Path"
 			mode = "No Path";
-			
 
 			// Place "No Path" text on screen in center
 			ch.noPathTBounds();
@@ -158,7 +148,7 @@ public class Frame extends JPanel
 		if (pathfinding.isComplete()) {
 			// Set run button to clear
 			ch.getB("run").setText("clear");
-			
+
 			// Set timer delay, start for background animation
 //			timer.setDelay(50);
 //			timer.start();
@@ -167,15 +157,15 @@ public class Frame extends JPanel
 			// Color flicker = new Color(r, G, b);
 			// g.setColor(flicker);
 			// g.fillRect(0, 0, getWidth(), getHeight());
-			
+
 			// Set completed mode
 			// if(showSteps) {
-			// 	mode = "Completed";
+			// mode = "Completed";
 			// }
 			// else {
-				mode = "Completed in " + pathfinding.getRunTime() + "ms";
-		// 	}
-		 }
+			mode = "Completed in " + pathfinding.getRunTime() + "ms";
+			// }
+		}
 
 		// Draws grid
 		g.setColor(Color.lightGray);
@@ -194,21 +184,21 @@ public class Frame extends JPanel
 
 		// // Draws all open Nodes (path finding nodes)
 		// for (int i = 0; i < pathfinding.getOpenList().size(); i++) {
-		// 	Node current = pathfinding.getOpenList().get(i);
-		// 	g.setColor(style.greenHighlight);
-		// 	g.fillRect(current.getX() + 1, current.getY() + 1, size - 1, size - 1);
+		// Node current = pathfinding.getOpenList().get(i);
+		// g.setColor(style.greenHighlight);
+		// g.fillRect(current.getX() + 1, current.getY() + 1, size - 1, size - 1);
 
-		// 	drawInfo(current, g);
+		// drawInfo(current, g);
 		// }
 
 		// // Draws all closed nodes
 		// for (int i = 0; i < pathfinding.getClosedList().size(); i++) {
-		// 	Node current = pathfinding.getClosedList().get(i);
+		// Node current = pathfinding.getClosedList().get(i);
 
-		// 	g.setColor(style.redHighlight);
-		// 	g.fillRect(current.getX() + 1, current.getY() + 1, size - 1, size - 1);
+		// g.setColor(style.redHighlight);
+		// g.fillRect(current.getX() + 1, current.getY() + 1, size - 1, size - 1);
 
-		// 	drawInfo(current, g);
+		// drawInfo(current, g);
 		// }
 
 		// Draw all final path nodes
@@ -231,7 +221,7 @@ public class Frame extends JPanel
 			g.setColor(Color.red);
 			g.fillRect(endNode.getX() + 1, endNode.getY() + 1, size - 1, size - 1);
 		}
-		
+
 		// If control panel is being hovered, change colours
 //		if(btnHover) {
 //			g.setColor(style.darkText);
@@ -246,23 +236,23 @@ public class Frame extends JPanel
 
 		// Setting mode text
 //		ch.getL("modeText").setText("Mode: " + mode);
-		
+
 		// Position all controls
 		ch.position();
-		
+
 		// Setting numbers in pathfinding lists
 //		ch.getL("openC").setText(Integer.toString(pathfinding.getOpenList().size()));
 //		ch.getL("closedC").setText(Integer.toString(pathfinding.getClosedList().size()));
 //		ch.getL("pathC").setText(Integer.toString(pathfinding.getPathList().size()));
-				
+
 		// Setting speed number text in showSteps or !showSteps mode
 //		if(showSteps) {
 //			ch.getL("speedC").setText(Integer.toString(ch.getS("speed").getValue()));
 //		}
 //		else {
-			ch.getL("speedC").setText("N/A");
+		ch.getL("speedC").setText("N/A");
 //		}
-					
+
 		// Getting values from checkboxes
 //		showSteps = ch.getC("showStepsCheck").isSelected();
 //		pathfinding.setDiagonal(ch.getC("diagonalCheck").isSelected());
@@ -270,7 +260,7 @@ public class Frame extends JPanel
 //		showSteps = false;
 //		pathfinding.setTrig(ch.getC("trigCheck").isSelected());
 	}
-	
+
 	// Draws info (f, g, h) on current node
 	public void drawInfo(Node current, Graphics g) {
 		if (size > 50) {
@@ -287,7 +277,7 @@ public class Frame extends JPanel
 		// If left mouse button is clicked
 		if (SwingUtilities.isLeftMouseButton(e)) {
 			// If 's' is pressed create start node
-			if (currentKey == 's') {
+			if (AdminUI.Modus == 1) {
 				int xRollover = e.getX() % size;
 				int yRollover = e.getY() % size;
 
@@ -296,10 +286,31 @@ public class Frame extends JPanel
 				} else {
 					startNode.setXY(e.getX() - xRollover, e.getY() - yRollover);
 				}
+				pathfinding.speicherWand();
 				repaint();
-			} 
+			}
 			// If 'e' is pressed create end node
-			else if (currentKey == 'e') {
+			else if (AdminUI.Modus == 2) {
+				int xBorder = e.getX() - (e.getX() % size);
+				int yBorder = e.getY() - (e.getY() % size);
+
+				Node newBorder = new Node(xBorder, yBorder);
+				pathfinding.addBorder(newBorder);
+				pathfinding.speicherWand();
+				repaint();
+			}
+			else if (AdminUI.Modus == 3) {
+				int mouseBoxX = e.getX() - (e.getX() % size);
+				int mouseBoxY = e.getY() - (e.getY() % size);			
+				int Location = pathfinding.searchBorder(mouseBoxX, mouseBoxY);
+				if (Location != -1) {
+					pathfinding.removeBorder(Location);
+					pathfinding.speicherWand();
+				}
+				repaint();
+			}
+			// Otherwise, create a wall
+			else if (AdminUI.Modus == 4){
 				int xRollover = e.getX() % size;
 				int yRollover = e.getY() % size;
 
@@ -308,62 +319,12 @@ public class Frame extends JPanel
 				} else {
 					endNode.setXY(e.getX() - xRollover, e.getY() - yRollover);
 				}
-				repaint();
-			} 
-			// Otherwise, create a wall
-			else {
-				int xBorder = e.getX() - (e.getX() % size);
-				int yBorder = e.getY() - (e.getY() % size); 
-				        
-				Node newBorder = new Node(xBorder, yBorder);
-				pathfinding.addBorder(newBorder);	
-				
+
 				pathfinding.speicherWand();
-		        
-/*				JSONParser jsonParser = new JSONParser();
-				
-				//First Employee
-		        JSONObject employeeDetails = new JSONObject();
-		        employeeDetails.put("x", xBorder);
-		        employeeDetails.put("y", yBorder);
-		         
-		        JSONObject employeeObject = new JSONObject(); 
-		        employeeObject.put("employee", employeeDetails);
-		        JSONArray employeeList = new JSONArray();
-		        employeeList.add(employeeObject);
-		        
-		        try (FileReader reader = new FileReader("Passwort.json"))
-		        {
-		        	
-		            //Read JSON file
-		            Object obj = jsonParser.parse(reader);
-		            JSONArray employeeList88 = (JSONArray) obj;
-		            System.out.println(employeeList88);
-		            
-		            employeeList.add(employeeList88);
-		            System.out.println(employeeList);
-		            //Write JSON file
-			        try (FileWriter file = new FileWriter("Passwort.json")) {
-			            //We can write any JSONArray or JSONObject instance to the file
-			            file.write(employeeList.toJSONString()); 
-			            file.flush();
-			 
-			        } catch (IOException e4) {
-			            e4.printStackTrace();
-			        }
-		 
-		        } catch (FileNotFoundException e99) {
-		            e99.printStackTrace();
-		        } catch (IOException e99) {
-		            e99.printStackTrace();
-		        } catch (ParseException e99) {
-		            e99.printStackTrace();
-		        }*/
-		        
 				repaint();
 			}
-		} 
-		// If right mouse button is clicked
+		}
+/*		// If right mouse button is clicked
 		else if (SwingUtilities.isRightMouseButton(e)) {
 			int mouseBoxX = e.getX() - (e.getX() % size);
 			int mouseBoxY = e.getY() - (e.getY() % size);
@@ -374,89 +335,80 @@ public class Frame extends JPanel
 					startNode = null;
 					repaint();
 				}
-			} 
+			}
 			// If 'e' is pressed remove end node
 			else if (currentKey == 'e') {
 				if (endNode != null && mouseBoxX == endNode.getX() && endNode.getY() == mouseBoxY) {
 					endNode = null;
 					repaint();
 				}
-			} 
-			// Otherwise, remove wall
-			else {
-				int Location = pathfinding.searchBorder(mouseBoxX, mouseBoxY);
-				if (Location != -1) {
-					pathfinding.removeBorder(Location);
-				}
-				repaint();
 			}
-		}
+			// Otherwise, remove wall
+		}*/
 	}
 
-	   private static void parseEmployeeObject(JSONObject employee) 
-	    {
-	        //Get employee object within list
-	        JSONObject employeeObject = (JSONObject) employee.get("employee");
-	         
-	        //Get employee first name
-	        long xWand = (long) employeeObject.get("x");    
+	private static void parseEmployeeObject(JSONObject employee) {
+		// Get employee object within list
+		JSONObject employeeObject = (JSONObject) employee.get("employee");
+
+		// Get employee first name
+		long xWand = (long) employeeObject.get("x");
 //	        System.out.println(xWand);
-	         
-	        //Get employee last name
-	        long yWand = (long) employeeObject.get("y");  
+
+		// Get employee last name
+		long yWand = (long) employeeObject.get("y");
 //	        System.out.println(yWand);
-	        
+
 //	        int xiWand = Integer.parseInt(xWand);
 //	        int yiWand = Integer.parseInt(yWand);
-	        
-	        Integer xiWand = (int) (long) xWand;
-	        Integer yiWand = (int) (long) yWand;
-	        
-			Node newBorder = new Node(xiWand, yiWand);
-			pathfinding.addBorder(newBorder);
-			
-/*	        //First Employee
-	        JSONObject employeeDetails4 = new JSONObject();
-	        employeeDetails4.put("x", xWand);
-	        employeeDetails4.put("y", yWand);
-	         
-	        JSONObject employeeObject4 = new JSONObject(); 
-	        employeeObject4.put("employee", employeeDetails4);
-	         
-	        //Add employees to list
-	        JSONArray employeeList4 = new JSONArray();
-	        employeeList4.add(employeeObject4);
-	         
-	        //Write JSON file
-	        try (FileWriter file = new FileWriter("employees2.json")) {
-	            //We can write any JSONArray or JSONObject instance to the file
-	            file.write(employeeList4.toJSONString()); 
-	            file.flush();
-	 
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }*/
-			
+
+		Integer xiWand = (int) (long) xWand;
+		Integer yiWand = (int) (long) yWand;
+
+		Node newBorder = new Node(xiWand, yiWand);
+		pathfinding.addBorder(newBorder);
+
+		/*
+		 * //First Employee JSONObject employeeDetails4 = new JSONObject();
+		 * employeeDetails4.put("x", xWand); employeeDetails4.put("y", yWand);
+		 * 
+		 * JSONObject employeeObject4 = new JSONObject();
+		 * employeeObject4.put("employee", employeeDetails4);
+		 * 
+		 * //Add employees to list JSONArray employeeList4 = new JSONArray();
+		 * employeeList4.add(employeeObject4);
+		 * 
+		 * //Write JSON file try (FileWriter file = new FileWriter("employees2.json")) {
+		 * //We can write any JSONArray or JSONObject instance to the file
+		 * file.write(employeeList4.toJSONString()); file.flush();
+		 * 
+		 * } catch (IOException e) { e.printStackTrace(); }
+		 */
+
 //	        String xWand2 = (String) neueWerte.get("x");
-	         
-	    }
-	   
+
+	}
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		MapCalculations(e);
 	}
 
 	@Override
-	public void mousePressed(MouseEvent e) {}
+	public void mousePressed(MouseEvent e) {
+	}
 
 	@Override
-	public void mouseReleased(MouseEvent e) {}
+	public void mouseReleased(MouseEvent e) {
+	}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {}
+	public void mouseEntered(MouseEvent e) {
+	}
 
 	@Override
-	public void mouseExited(MouseEvent e) {}
+	public void mouseExited(MouseEvent e) {
+	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
@@ -469,7 +421,7 @@ public class Frame extends JPanel
 		int x = e.getX();
 		int y = e.getY();
 		int height = this.getHeight();
-		
+
 		// Detects if mouse is within button panel
 //		if(x >= 10 && x <= 332 && y >= (height-96) && y <= (height-6)) {
 //			btnHover = true;
@@ -481,7 +433,8 @@ public class Frame extends JPanel
 	}
 
 	@Override
-	public void keyTyped(KeyEvent e) {}
+	public void keyTyped(KeyEvent e) {
+	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -494,31 +447,30 @@ public class Frame extends JPanel
 //			start();
 //		}
 	}
-	
+
 	@Override
 	public void keyReleased(KeyEvent e) {
 		currentKey = (char) 0;
 	}
-	
+
 	// Starts path finding
 	void start() {
-		if(startNode != null && endNode != null) {
+		if (startNode != null && endNode != null) {
 //			if (!showSteps) {
-				pathfinding.start(startNode, endNode);
+			pathfinding.start(startNode, endNode);
 //			} else {
 //				pathfinding.setup(startNode, endNode);
 //				setSpeed();
 //				timer.start();
 //			}
-		}
-		else {
-			JOptionPane.showMessageDialog(null,"Es muss ein Startpunkt, sowie ein Endpunkt definiert werden");
+		} else {
+			JOptionPane.showMessageDialog(null, "Es muss ein Startpunkt, sowie ein Endpunkt definiert werden");
 //			reset()
 			System.out.println("ERROR: Needs start and end points to run.");
 		}
 	}
-	
-	@Override
+
+/*	@Override
 	// Scales the map with mouse wheel scroll
 	public void mouseWheelMoved(MouseWheelEvent m) {
 		int rotation = m.getWheelRotation();
@@ -571,7 +523,7 @@ public class Frame extends JPanel
 			}
 		}
 		repaint();
-	}
+	}*/
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -582,59 +534,54 @@ public class Frame extends JPanel
 		}
 		// // Finish pathfinding background flicker!
 		// if (pathfinding.isComplete() || pathfinding.isNoPath()) {
-		// 	r = (int) (Math.random() * ((r + 15) - (r - 15)) + (r - 15));
-		// 	G = (int) (Math.random() * ((G + 15) - (G - 15)) + (G - 15));
-		// 	b = (int) (Math.random() * ((b + 15) - (b - 15)) + (b - 15));
-			
-		// 	if (r >= 240 | r <= 15) {
-		// 		r = randomWithRange(0, 255);
-		// 	}
-		// 	if (G >= 240 | G <= 15) {
-		// 		G = randomWithRange(0, 255);
-		// 	}
-		// 	if (b >= 240 | b <= 15) {
-		// 		b = randomWithRange(0, 255);
-		// 	}
+		// r = (int) (Math.random() * ((r + 15) - (r - 15)) + (r - 15));
+		// G = (int) (Math.random() * ((G + 15) - (G - 15)) + (G - 15));
+		// b = (int) (Math.random() * ((b + 15) - (b - 15)) + (b - 15));
+
+		// if (r >= 240 | r <= 15) {
+		// r = randomWithRange(0, 255);
 		// }
-		
+		// if (G >= 240 | G <= 15) {
+		// G = randomWithRange(0, 255);
+		// }
+		// if (b >= 240 | b <= 15) {
+		// b = randomWithRange(0, 255);
+		// }
+		// }
+
 		// Actions of run/stop/clear button
-		if(e.getActionCommand() != null) {
-			if(e.getActionCommand().equals("run") && !pathfinding.isRunning()) {
+		if (e.getActionCommand() != null) {
+			if (e.getActionCommand().equals("run") && !pathfinding.isRunning()) {
 				ch.getB("run").setText("stop");
 				start();
-			}
-			else if(e.getActionCommand().equals("clear")) {
+			} else if (e.getActionCommand().equals("clear")) {
 				ch.getB("run").setText("run");
 				mode = "Map Creation";
 				ch.getL("noPathT").setVisible(false);
 				pathfinding.reset();
-			}
-			else if(e.getActionCommand().equals("stop")) {
+			} else if (e.getActionCommand().equals("stop")) {
 				ch.getB("run").setText("start");
 //				timer.stop();
-			}
-			else if(e.getActionCommand().equals("start")) {
+			} else if (e.getActionCommand().equals("start")) {
 				ch.getB("run").setText("stop");
 //				timer.start();
 			}
 		}
 		repaint();
 	}
-	
+
 	// Returns random number between min and max
-	int randomWithRange(int min, int max)
-	{
-	   int range = (max - min) + 1;     
-	   return (int)(Math.random() * range) + min;
+	int randomWithRange(int min, int max) {
+		int range = (max - min) + 1;
+		return (int) (Math.random() * range) + min;
 	}
-	
+
 	// Calculates delay with two exponential functions
 	void setSpeed() {
 //		timer.setDelay(0);
 	}
-	
+
 	boolean showSteps() {
 		return showSteps;
 	}
 }
-

@@ -19,7 +19,7 @@ public class APathfinding {
 	private ArrayList<Node> closed;
 	private ArrayList<Node> path;
 	private Sort sort = new Sort();
-    JSONArray employeeList = new JSONArray();
+	JSONArray employeeList = new JSONArray();
 
 	public APathfinding(int size) {
 		this.size = size;
@@ -90,7 +90,7 @@ public class APathfinding {
 		runTime = endTime - startTime;
 		System.out.println("Completed: " + runTime + "ms");
 	}
-	
+
 	public void setup(Node s, Node e) {
 		running = true;
 		startNode = s;
@@ -114,7 +114,7 @@ public class APathfinding {
 	public boolean isRunning() {
 		return running;
 	}
-	
+
 	public boolean isComplete() {
 		return complete;
 	}
@@ -126,19 +126,19 @@ public class APathfinding {
 	public Node getEnd() {
 		return endNode;
 	}
-	
+
 	public Node getPar() {
 		return par;
 	}
-	
+
 	public boolean isNoPath() {
 		return noPath;
 	}
-	
+
 	public boolean isDiagonal() {
 		return diagonal;
 	}
-	
+
 	public boolean isTrig() {
 		return trig;
 	}
@@ -146,7 +146,7 @@ public class APathfinding {
 	public void setDiagonal(boolean d) {
 		diagonal = d;
 	}
-	
+
 	public void setTrig(boolean t) {
 		trig = t;
 	}
@@ -158,65 +158,67 @@ public class APathfinding {
 
 	public void findPath(Node parent) {
 		Node openNode = null;
-		
+
 		// if (diagonal) {
-		// 	// Detects and adds one step of nodes to open list
-		// 	for (int i = 0; i < 3; i++) {
-		// 		for (int j = 0; j < 3; j++) {
-		// 			if (i == 1 && j == 1) {
-		// 				continue;
-		// 			}
-		// 			int possibleX = (parent.getX() - size) + (size * i);
-		// 			int possibleY = (parent.getY() - size) + (size * j);
+		// // Detects and adds one step of nodes to open list
+		// for (int i = 0; i < 3; i++) {
+		// for (int j = 0; j < 3; j++) {
+		// if (i == 1 && j == 1) {
+		// continue;
+		// }
+		// int possibleX = (parent.getX() - size) + (size * i);
+		// int possibleY = (parent.getY() - size) + (size * j);
 
-		// 			// Possible coordinates of borders
-		// 			// Using (crossBorderX, parent.getY())
-		// 			// and (parent.getX(), crossBorderY())
-		// 			// To see if there are borders in the way
-		// 			int crossBorderX = parent.getX() + (possibleX - parent.getX());
-		// 			int crossBorderY = parent.getY() + (possibleY - parent.getY());
+		// // Possible coordinates of borders
+		// // Using (crossBorderX, parent.getY())
+		// // and (parent.getX(), crossBorderY())
+		// // To see if there are borders in the way
+		// int crossBorderX = parent.getX() + (possibleX - parent.getX());
+		// int crossBorderY = parent.getY() + (possibleY - parent.getY());
 
-		// 			// Disables ability to cut corners around borders
-		// 			if (searchBorder(crossBorderX, parent.getY()) != -1
-		// 					| searchBorder(parent.getX(), crossBorderY) != -1 && ((j == 0 | j == 2) && i != 1)) {
-		// 				continue;
-		// 			}
+		// // Disables ability to cut corners around borders
+		// if (searchBorder(crossBorderX, parent.getY()) != -1
+		// | searchBorder(parent.getX(), crossBorderY) != -1 && ((j == 0 | j == 2) && i
+		// != 1)) {
+		// continue;
+		// }
 
-		// 			calculateNodeValues(possibleX, possibleY, openNode, parent);
-		// 		}
-		// 	}
-		// } 
+		// calculateNodeValues(possibleX, possibleY, openNode, parent);
+		// }
+		// }
+		// }
 		// else if (!trig) {
-			// Detects and adds one step of nodes to open list
-			for (int i = 0; i < 3; i++) {
-				for (int j = 0; j < 3; j++) {
-					if((i == 0 && j == 0) || (i == 0 && j == 2) || 
-						(i == 1 && j == 1) || (i == 2 && j == 0) ||
-						(i == 2 && j == 2)) {
-						continue;
-					}
-					int possibleX = (parent.getX() - size) + (size * i);
-					int possibleY = (parent.getY() - size) + (size * j);
-
-					calculateNodeValues(possibleX, possibleY, openNode, parent);
+		// Detects and adds one step of nodes to open list
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				if ((i == 0 && j == 0) || (i == 0 && j == 2) || (i == 1 && j == 1) || (i == 2 && j == 0)
+						|| (i == 2 && j == 2)) {
+					continue;
 				}
+				int possibleX = (parent.getX() - size) + (size * i);
+				int possibleY = (parent.getY() - size) + (size * j);
+
+				calculateNodeValues(possibleX, possibleY, openNode, parent);
 			}
+		}
 		// }
 		// else {
-		// 	for (int i = 0; i < 4; i++) {
-		// 		// Uses cosine and sine functions to get circle of points
-		// 		// around parent
-		// 		int possibleX = (int) Math.round(parent.getX() + (-size * Math.cos(kValue * i)));
-		// 		int possibleY = (int) Math.round(parent.getY() + (-size * Math.sin(kValue * i)));
+		// for (int i = 0; i < 4; i++) {
+		// // Uses cosine and sine functions to get circle of points
+		// // around parent
+		// int possibleX = (int) Math.round(parent.getX() + (-size * Math.cos(kValue *
+		// i)));
+		// int possibleY = (int) Math.round(parent.getY() + (-size * Math.sin(kValue *
+		// i)));
 
-		// 		calculateNodeValues(possibleX, possibleY, openNode, parent);
-		// 	}
+		// calculateNodeValues(possibleX, possibleY, openNode, parent);
+		// }
 		// }
 		// frame.repaint();
 
 		// Set the new parent node
 		parent = lowestFCost();
-		
+
 		if (parent == null) {
 			System.out.println("END> NO PATH");
 			noPath = true;
@@ -247,39 +249,39 @@ public class APathfinding {
 		// of the open node.. If true.. Sets parent of open Node
 		// as new parent.. and re-calculates G, and F values
 		// if (diagonal) {
-		// 	for (int i = 0; i < 3; i++) {
-		// 		for (int j = 0; j < 3; j++) {
-		// 			if (i == 1 && j == 1) {
-		// 				continue;
-		// 			}
-		// 			int possibleX = (parent.getX() - size) + (size * i);
-		// 			int possibleY = (parent.getY() - size) + (size * j);
-		// 			Node openCheck = getOpenNode(possibleX, possibleY);
+		// for (int i = 0; i < 3; i++) {
+		// for (int j = 0; j < 3; j++) {
+		// if (i == 1 && j == 1) {
+		// continue;
+		// }
+		// int possibleX = (parent.getX() - size) + (size * i);
+		// int possibleY = (parent.getY() - size) + (size * j);
+		// Node openCheck = getOpenNode(possibleX, possibleY);
 
-		// 			// If spot being looked at, is an open node
-		// 			if (openCheck != null) {
-		// 				int distanceX = parent.getX() - openCheck.getX();
-		// 				int distanceY = parent.getY() - openCheck.getY();
-		// 				int newG = parent.getG();
+		// // If spot being looked at, is an open node
+		// if (openCheck != null) {
+		// int distanceX = parent.getX() - openCheck.getX();
+		// int distanceY = parent.getY() - openCheck.getY();
+		// int newG = parent.getG();
 
-		// 				if (distanceX != 0 && distanceY != 0) {
-		// 					newG += diagonalMoveCost;
-		// 				} else {
-		// 					newG += size;
-		// 				}
+		// if (distanceX != 0 && distanceY != 0) {
+		// newG += diagonalMoveCost;
+		// } else {
+		// newG += size;
+		// }
 
-		// 				if (newG < openCheck.getG()) {
-		// 					int s = searchOpen(possibleX, possibleY);
-		// 					open.get(s).setParent(parent);
-		// 					open.get(s).setG(newG);
-		// 					open.get(s).setF(open.get(s).getG() + open.get(s).getH());
-		// 				}
-		// 			}
-		// 		}
-		// 	}
+		// if (newG < openCheck.getG()) {
+		// int s = searchOpen(possibleX, possibleY);
+		// open.get(s).setParent(parent);
+		// open.get(s).setG(newG);
+		// open.get(s).setF(open.get(s).getG() + open.get(s).getH());
+		// }
+		// }
+		// }
+		// }
 		// }
 //		if(!frame.showSteps()) {
-			findPath(parent);
+		findPath(parent);
 //		}
 //		else {
 //			par = parent;
@@ -514,21 +516,21 @@ public class APathfinding {
 	public ArrayList<Node> getPathList() {
 		return path;
 	}
-	
+
 	public long getRunTime() {
 		return runTime;
 	}
-	
+
 	public void reset() {
-		while(open.size() > 0) {
+		while (open.size() > 0) {
 			open.remove(0);
 		}
-		
-		while(closed.size() > 0) {
+
+		while (closed.size() > 0) {
 			closed.remove(0);
 		}
-		
-		while(path.size() > 0) {
+
+		while (path.size() > 0) {
 			path.remove(0);
 		}
 		noPath = false;
@@ -553,71 +555,59 @@ public class APathfinding {
 		System.out.println("===============");
 	}
 	///////////////////////////////////////////////////////////////
-/*	public void speicherWand() {
-		for (int i = 0; i < borders.size(); i++) {
-			//Wände auslesen
-	        JSONArray listx = new JSONArray();
-	        listx.add( borders.get(i).getX());
-	        JSONArray listy = new JSONArray();
-	        listy.add(borders.get(i).getY());
-	        
-//	        System.out.println(borders.get(i).getX());
-//	        System.out.println(borders.get(i).getY());
-	         
-	        JSONObject employeeObject = new JSONObject(); 
-	        employeeObject.put("x", listx);
-	        employeeObject.put("y", listy);
-	         
-	        //In eine Liste packen
-
-	        employeeList.add(employeeObject);
-	         
-		}
-        //Schriebe in die JSON
-        try (FileWriter file = new FileWriter("employees2.json")) {
-			//We can write any JSONArray or JSONObject instance to the file
-            file.write(employeeList.toJSONString()); 
-            file.flush();
-            employeeList.clear();
- 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-		System.out.println("done");
-	}*/
+	/*
+	 * public void speicherWand() { for (int i = 0; i < borders.size(); i++) {
+	 * //Wände auslesen JSONArray listx = new JSONArray(); listx.add(
+	 * borders.get(i).getX()); JSONArray listy = new JSONArray();
+	 * listy.add(borders.get(i).getY());
+	 * 
+	 * // System.out.println(borders.get(i).getX()); //
+	 * System.out.println(borders.get(i).getY());
+	 * 
+	 * JSONObject employeeObject = new JSONObject(); employeeObject.put("x", listx);
+	 * employeeObject.put("y", listy);
+	 * 
+	 * //In eine Liste packen
+	 * 
+	 * employeeList.add(employeeObject);
+	 * 
+	 * } //Schriebe in die JSON try (FileWriter file = new
+	 * FileWriter("employees2.json")) { //We can write any JSONArray or JSONObject
+	 * instance to the file file.write(employeeList.toJSONString()); file.flush();
+	 * employeeList.clear();
+	 * 
+	 * } catch (IOException e) { e.printStackTrace(); } System.out.println("done");
+	 * }
+	 */
 	///////////////////////////////////////////////////////////////
-	
+
 	public void speicherWand() {
 		for (int i = 0; i < borders.size(); i++) {
-			//Wände auslesen
-	        JSONObject employeeDetails = new JSONObject();
-	        employeeDetails.put("x", borders.get(i).getX());
-	        employeeDetails.put("y", borders.get(i).getY());
-	        
-	        System.out.println(borders.get(i).getX());
-	        System.out.println(borders.get(i).getY());
-	         
-	        JSONObject employeeObject = new JSONObject(); 
-	        employeeObject.put("employee", employeeDetails);
-	         
-	        //In eine Liste packen
+			// Wände auslesen
+			JSONObject employeeDetails = new JSONObject();
+			employeeDetails.put("x", borders.get(i).getX());
+			employeeDetails.put("y", borders.get(i).getY());
 
-	        employeeList.add(employeeObject);
-	         
+			JSONObject employeeObject = new JSONObject();
+			employeeObject.put("employee", employeeDetails);
+
+			// In eine Liste packen
+
+			employeeList.add(employeeObject);
+
 		}
-        //Schriebe in die JSON
-        try (FileWriter file = new FileWriter("Wand.json")) {
-			//We can write any JSONArray or JSONObject instance to the file
-            file.write(employeeList.toJSONString()); 
-            file.flush();
-            employeeList.clear();
- 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-		System.out.println("done");
+		// Schriebe in die JSON
+		try (FileWriter file = new FileWriter("Wand.json")) {
+			// We can write any JSONArray or JSONObject instance to the file
+			file.write(employeeList.toJSONString());
+			file.flush();
+			employeeList.clear();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
-	
+
 	//////////////////////////////////////////////////////////////////////////
 
 	public void printOpenList() {

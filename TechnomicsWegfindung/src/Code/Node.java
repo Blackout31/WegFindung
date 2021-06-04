@@ -10,7 +10,7 @@ package Code;
 public class Node {
 	private int x, y, g, h, f;
 	private Node parent;
-	
+
 	public Node(int x, int y) {
 		this.x = x;
 		this.y = y;
@@ -39,7 +39,7 @@ public class Node {
 	public Node getNode() {
 		return parent;
 	}
-	
+
 	public Node getParent() {
 		return parent;
 	}
